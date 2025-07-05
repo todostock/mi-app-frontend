@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+/* Estilos para el componente de impresión */
+.etiqueta {
+    border: 2px solid black;
+    padding: 15px;
+    width: 450px;
+    height: 280px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    page-break-after: always; /* Salto de página después de cada etiqueta */
+}
+.etiqueta:last-child {
+    page-break-after: avoid; /* Evitar salto de página en la última etiqueta */
+}
+.header { display: flex; align-items: center; border-bottom: 1px solid #ccc; padding-bottom: 10px; }
+.header img { width: 100px; height: auto; margin-right: 15px; }
+.titulo h1, .titulo h2 { margin: 0; }
+.titulo h1 { font-size: 1.2em; }
+.titulo h2 { font-size: 1em; font-weight: normal; }
+.cliente-info { flex-grow: 1; padding: 10px 0; line-height: 1.5; }
+.cliente-info h3 { margin: 0 0 5px 0; font-size: 0.9em; }
+.cliente-info p { margin: 2px 0; font-size: 0.9em; }
+.footer { border-top: 1px solid #ccc; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; }
+.footer p { margin: 0; font-size: 0.8em; }
+.bulto-info { font-weight: bold; font-size: 1.1em; }
