@@ -14,8 +14,23 @@ function App() {
     // Al cargar la app, revisa si hay una sesión guardada
     useEffect(() => {
         const savedSession = localStorage.getItem('supabase_session');
-        if (savedSession) {
-            setSession(JSON.parse(savedSession));
+        
+        // --- LA CORRECCIÓN ESTÁ AQUÍ ---
+        // Nos aseguramos de que haya algo guardado y de que no sea la palabra "undefined"
+        if (savedSession && savedSession !== 'undefined' && savedSession !== 'null') {
+            try {
+                const sessionData = JSON.parse(savedSession);
+                // Verificamos que los datos de la sesión son válidos antes de usarlos
+                if (sessionData && sessionData.access_token) {
+                    setSession(sessionData);
+                } else {
+                    localStorage.removeItem('supabase_session');
+                }
+            } catch (error) {
+                console.error("Error al parsear la sesión guardada:", error);
+                // Si hay un error, limpiamos el dato corrupto
+                localStorage.removeItem('supabase_session');
+            }
         }
     }, []);
 
@@ -24,12 +39,10 @@ function App() {
         setSession(null);
     };
 
-    // Si no hay sesión, muestra solo la pantalla de Login
     if (!session) {
         return <Login setSession={setSession} />;
     }
 
-    // Si hay sesión, muestra la aplicación completa
     const renderizarVista = () => {
         switch (vistaActual) {
             case 'venta': return <RegistrarVenta />;
