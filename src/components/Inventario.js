@@ -71,20 +71,20 @@ function Inventario() {
                 {error && <p style={{ color: 'red' }}>{error}</p>}
             </form>
             <h3>Lista de Productos</h3>
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <table className="tabla-responsiva" style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead>
                     <tr style={{ background: '#f2f2f2' }}>
-                        <th style={{ border: '1px solid #ddd', padding: '8px' }}>Código</th>
-                        <th style={{ border: '1px solid #ddd', padding: '8px' }}>Nombre</th>
-                        <th style={{ border: '1px solid #ddd', padding: '8px' }}>Stock Actual</th>
+                        <th style={{ padding: '8px' }}>Código</th>
+                        <th style={{ padding: '8px' }}>Nombre</th>
+                        <th style={{ padding: '8px' }}>Stock Actual</th>
                     </tr>
                 </thead>
                 <tbody>
                     {productos.map((producto) => (
                         <tr key={producto.id}>
-                            <td style={{ border: '1px solid #ddd', padding: '8px' }}>{producto.codigo_producto}</td>
-                            <td style={{ border: '1px solid #ddd', padding: '8px' }}>{producto.nombre_producto}</td>
-                            <td style={{ border: '1px solid #ddd', padding: '8px' }}>{producto.stock}</td>
+                            <td data-label="Código">{producto.codigo_producto}</td>
+                            <td data-label="Nombre">{producto.nombre_producto}</td>
+                            <td data-label="Stock Actual">{producto.stock}</td>
                         </tr>
                     ))}
                 </tbody>

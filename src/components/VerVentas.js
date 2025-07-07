@@ -31,7 +31,7 @@ function VerVentas() {
             }
         }
     };
-    
+
     const handleImprimirPDF = async (venta) => {
         const pdf = new jsPDF('p', 'mm', 'a4');
         const totalBultos = venta.cantidad_bultos;
@@ -78,22 +78,28 @@ function VerVentas() {
     return (
         <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
             <h2>Historial de Ventas</h2>
-            <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '20px' }}>
+            <table className="tabla-responsiva" style={{ width: '100%', borderCollapse: 'collapse', marginTop: '20px' }}>
                 <thead>
                     <tr style={{ background: '#f2f2f2' }}>
-                        <th>ID Venta</th><th>Fecha</th><th>Cliente</th><th>Total Venta</th><th>Bultos</th><th>Tipo</th><th>Acciones</th>
+                        <th style={{ padding: '8px' }}>ID Venta</th>
+                        <th style={{ padding: '8px' }}>Fecha</th>
+                        <th style={{ padding: '8px' }}>Cliente</th>
+                        <th style={{ padding: '8px' }}>Total Venta</th>
+                        <th style={{ padding: '8px' }}>Bultos</th>
+                        <th style={{ padding: '8px' }}>Tipo</th>
+                        <th style={{ padding: '8px' }}>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     {ventas.map((venta) => (
                         <tr key={venta.id}>
-                            <td>{venta.id}</td>
-                            <td>{formatFecha(venta.fecha)}</td>
-                            <td>{venta.clientes?.nombre || 'N/A'}</td>
-                            <td>${new Intl.NumberFormat('es-CL').format(venta.total)}</td>
-                            <td>{venta.cantidad_bultos}</td>
-                            <td>{venta.es_afecta_iva ? 'Afecta a IVA' : 'Exenta'}</td>
-                            <td style={{ display: 'flex', gap: '5px' }}>
+                            <td data-label="ID Venta">{venta.id}</td>
+                            <td data-label="Fecha">{formatFecha(venta.fecha)}</td>
+                            <td data-label="Cliente">{venta.clientes?.nombre || 'N/A'}</td>
+                            <td data-label="Total Venta">${new Intl.NumberFormat('es-CL').format(venta.total)}</td>
+                            <td data-label="Bultos">{venta.cantidad_bultos}</td>
+                            <td data-label="Tipo">{venta.es_afecta_iva ? 'Afecta a IVA' : 'Exenta'}</td>
+                            <td data-label="Acciones" style={{ display: 'flex', gap: '5px', justifyContent: 'flex-end' }}>
                                 <button onClick={() => handleImprimirPDF(venta)}>Descargar PDF</button>
                                 <button onClick={() => handleEliminar(venta.id)} style={{backgroundColor: '#ff4d4d', color: 'white', border: 'none', borderRadius: '4px', padding: '5px 8px', cursor: 'pointer'}}>Anular</button>
                             </td>

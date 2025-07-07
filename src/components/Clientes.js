@@ -29,9 +29,7 @@ function Clientes() {
             setError('Nombre, RUT, Dirección y Teléfono son obligatorios');
             return;
         }
-
         const nuevoCliente = { nombre, rut, direccion, telefono, correo };
-
         try {
             await fetchWithAuth('/api/clientes', {
                 method: 'POST',
@@ -54,7 +52,6 @@ function Clientes() {
     return (
         <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
             <h2>Gestión de Clientes</h2>
-            
             <form onSubmit={handleSubmit} style={{ marginBottom: '30px', border: '1px solid #ccc', padding: '15px', borderRadius: '5px' }}>
                 <h3>Añadir Nuevo Cliente</h3>
                 <input type="text" placeholder="Nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} style={{ marginRight: '10px', marginBottom: '10px' }} />
@@ -65,26 +62,25 @@ function Clientes() {
                 <button type="submit">Agregar Cliente</button>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
             </form>
-
             <h3>Lista de Clientes</h3>
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <table className="tabla-responsiva" style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead>
                     <tr style={{ background: '#f2f2f2' }}>
-                        <th style={{ border: '1px solid #ddd', padding: '8px' }}>Nombre</th>
-                        <th style={{ border: '1px solid #ddd', padding: '8px' }}>RUT</th>
-                        <th style={{ border: '1px solid #ddd', padding: '8px' }}>Dirección</th>
-                        <th style={{ border: '1px solid #ddd', padding: '8px' }}>Teléfono</th>
-                        <th style={{ border: '1px solid #ddd', padding: '8px' }}>Correo</th>
+                        <th style={{ padding: '8px' }}>Nombre</th>
+                        <th style={{ padding: '8px' }}>RUT</th>
+                        <th style={{ padding: '8px' }}>Dirección</th>
+                        <th style={{ padding: '8px' }}>Teléfono</th>
+                        <th style={{ padding: '8px' }}>Correo</th>
                     </tr>
                 </thead>
                 <tbody>
                     {clientes.map((cliente) => (
                         <tr key={cliente.id}>
-                            <td style={{ border: '1px solid #ddd', padding: '8px' }}>{cliente.nombre}</td>
-                            <td style={{ border: '1px solid #ddd', padding: '8px' }}>{cliente.rut}</td>
-                            <td style={{ border: '1px solid #ddd', padding: '8px' }}>{cliente.direccion}</td>
-                            <td style={{ border: '1px solid #ddd', padding: '8px' }}>{cliente.telefono}</td>
-                            <td style={{ border: '1px solid #ddd', padding: '8px' }}>{cliente.correo}</td>
+                            <td data-label="Nombre">{cliente.nombre}</td>
+                            <td data-label="RUT">{cliente.rut}</td>
+                            <td data-label="Dirección">{cliente.direccion}</td>
+                            <td data-label="Teléfono">{cliente.telefono}</td>
+                            <td data-label="Correo">{cliente.correo}</td>
                         </tr>
                     ))}
                 </tbody>

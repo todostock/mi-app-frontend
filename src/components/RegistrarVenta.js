@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchWithAuth } from '../api'; // Importamos la nueva función
+import { fetchWithAuth } from '../api';
 
 const getTodayDateString = () => {
     const today = new Date();
@@ -55,7 +55,6 @@ function RegistrarVenta() {
             alert("Debes seleccionar un cliente y al menos un producto.");
             return;
         }
-
         const ventaData = {
             cliente_id: parseInt(clienteSeleccionado),
             es_afecta_iva: esAfectaIva,
@@ -67,7 +66,6 @@ function RegistrarVenta() {
                 precio_unitario: parseFloat(p.precio_unitario)
             }))
         };
-
         try {
             await fetchWithAuth('/api/ventas', {
                 method: 'POST',
@@ -92,7 +90,7 @@ function RegistrarVenta() {
     );
 
     return (
-        <div style={{ padding: '20px', display: 'flex', gap: '20px' }}>
+        <div className="registrar-venta-container" style={{ padding: '20px', display: 'flex', gap: '20px' }}>
             <div style={{ flex: 1 }}>
                 <h2>Registrar Nueva Venta</h2>
                 <div style={{ marginBottom: '20px' }}>

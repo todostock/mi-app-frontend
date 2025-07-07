@@ -100,29 +100,38 @@ function AnalisisVentas() {
             {mesesFiltrados.map(mes => (
                 <div key={mes} style={{ marginBottom: '40px' }}>
                     <h3>Ventas de {mes}</h3>
-                    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                    <table className="tabla-responsiva" style={{ width: '100%', borderCollapse: 'collapse' }}>
                         <thead>
                             <tr style={{ background: '#f2f2f2' }}>
-                                <th>Fecha</th><th>Producto Vendido</th><th>Monto Neto</th><th>IVA (19%)</th><th>Monto Bruto</th>
+                                <th style={{ padding: '8px' }}>Fecha</th>
+                                <th style={{ padding: '8px' }}>Producto Vendido</th>
+                                <th style={{ padding: '8px' }}>Monto Neto</th>
+                                <th style={{ padding: '8px' }}>IVA (19%)</th>
+                                <th style={{ padding: '8px' }}>Monto Bruto</th>
                             </tr>
                         </thead>
                         <tbody>
                             {ventasAgrupadas[mes].items.map((item, index) => (
                                 <tr key={index}>
-                                    <td>{item.fecha}</td><td>{item.producto}</td><td>{formatCurrency(item.neto)}</td><td>{formatCurrency(item.iva)}</td><td>{formatCurrency(item.bruto)}</td>
+                                    <td data-label="Fecha">{item.fecha}</td>
+                                    <td data-label="Producto Vendido">{item.producto}</td>
+                                    <td data-label="Monto Neto">{formatCurrency(item.neto)}</td>
+                                    <td data-label="IVA (19%)">{formatCurrency(item.iva)}</td>
+                                    <td data-label="Monto Bruto">{formatCurrency(item.bruto)}</td>
                                 </tr>
                             ))}
                         </tbody>
                         <tfoot>
                             <tr style={{ background: '#e0e0e0', fontWeight: 'bold' }}>
-                                <td colSpan="2">TOTALES DEL MES:</td>
-                                <td>{formatCurrency(ventasAgrupadas[mes].totalNeto)}</td><td>{formatCurrency(ventasAgrupadas[mes].totalIva)}</td><td>{formatCurrency(ventasAgrupadas[mes].totalBruto)}</td>
+                                <td colSpan="2" data-label="TOTALES DEL MES:">TOTALES DEL MES:</td>
+                                <td data-label="Total Neto">{formatCurrency(ventasAgrupadas[mes].totalNeto)}</td>
+                                <td data-label="Total IVA">{formatCurrency(ventasAgrupadas[mes].totalIva)}</td>
+                                <td data-label="Total Bruto">{formatCurrency(ventasAgrupadas[mes].totalBruto)}</td>
                             </tr>
                         </tfoot>
                     </table>
                 </div>
             ))}
-            <style>{`th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }`}</style>
         </div>
     );
 }

@@ -61,3 +61,68 @@
 .footer { border-top: 1px solid #ccc; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; }
 .footer p { margin: 0; font-size: 0.8em; }
 .bulto-info { font-weight: bold; font-size: 1.1em; }
+
+/* --- ESTILOS PARA DISPOSITIVOS MÓVILES --- */
+
+/* Usaremos 768px como el punto de quiebre. Todo lo que esté por debajo se considera "móvil" */
+@media (max-width: 768px) {
+  /* Ajusta el header para móviles */
+  .App-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .App-header nav {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap; /* Permite que los botones pasen a la siguiente línea si no caben */
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  /* Contenedor principal de las vistas */
+  .main-content {
+    padding: 10px; /* Menos padding en pantallas pequeñas */
+  }
+
+  /* Contenedor de la vista de Registrar Venta */
+  .registrar-venta-container {
+    flex-direction: column; /* Apila las columnas una sobre otra */
+  }
+  
+  /* --- ESTILOS PARA HACER LAS TABLAS RESPONSIVAS --- */
+  .tabla-responsiva {
+    border: none;
+  }
+
+  .tabla-responsiva thead {
+    display: none; /* Ocultamos los encabezados de la tabla */
+  }
+
+  .tabla-responsiva tr {
+    display: block; /* Cada fila se convierte en un bloque, como una "tarjeta" */
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .tabla-responsiva td {
+    display: block; /* Cada celda ocupa una línea completa */
+    text-align: right; /* Alineamos el dato a la derecha */
+    border-bottom: 1px dotted #ccc;
+    padding: 10px;
+  }
+
+  .tabla-responsiva td:last-child {
+    border-bottom: none;
+  }
+
+  /* Usamos un pseudo-elemento para mostrar el encabezado de la columna */
+  .tabla-responsiva td::before {
+    content: attr(data-label); /* Toma el texto del atributo 'data-label' */
+    float: left; /* Lo alinea a la izquierda */
+    font-weight: bold;
+  }
+}
